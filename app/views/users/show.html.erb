@@ -1,2 +1,48 @@
-<h1 id="header">header</h1>
-<%= render @tweets %>
+<style type="text/css" media="screen">
+
+	#container{
+		width: 800px;
+		margin-left: 100px;
+		margin-top: 50px;
+	}
+	.orange{
+		color:#EF8A33;
+	}
+
+	.logo{
+		height:150px;
+	}
+
+	#logotext{
+		color:#0072BC;
+		font-family: "Helvetica Neue", "Arial", sans-serif;
+		margin-left: 180px;
+		margin-top: -70px;
+	}
+	
+	#logo_tagline{
+		font-weight: bold;
+		font-size: 1.5em;
+	}
+	
+	#logo_subline{
+		margin-top: -10px;
+		font-size: 1.3em;
+	}
+
+	.controls {
+		display:none;
+	}
+</style>
+<div id="container">
+	<div id="header">
+		<%= image_tag "vnuze_logo.PNG", :title => "VideoNuze", :class => "logo" %>
+		<div id="logotext">
+			<p id="logo_tagline">ONLINE VIDEO ADVERTISING SUMMIT</p>
+			<p id="logo_subline">join the conversation at <span class="orange"><%= @user.hashtag %></span></p>
+		</div>
+	</div>
+	<div id="body">
+		<table><%= render @tweets %></table>		
+	</div>
+</div>
