@@ -1,0 +1,60 @@
+<style type="text/css" media="screen">
+	#pending{
+		width: 500px;
+		background-color: #ccc;
+		float: left;
+	}
+	#approved {
+		width:500px;
+		float: right;
+	}	
+	
+	.icon{
+		width: 50px;
+	}
+	.controls {
+	}
+</style>
+
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function() {
+        // get data every 5 mins and refresh myDiv
+        var pingAfter = 5000;  
+        var refreshId = setInterval(function() {
+            $("#pending").load('/partial/data');
+        }, pingAfter);
+    });
+</script>
+
+<%= form_for @user do |f|  %>
+	<% if @user.autopost %>
+		<% @user.autopost = false %>
+		<%= f.hidden_field(:autopost) %>
+	  <%= f.submit "Turn AutoPost off" %>
+	<% else %>
+	  <% @user.autopost = true %>
+		<%= f.hidden_field(:autopost) %>
+	  <%= f.submit "Turn AutoPost on" %>
+	<% end %>
+<% end %>
+
+<%= form_for @user do |f|  %>
+	<%= f.label :hashtag %>
+	<%= f.text_field :hashtag %>
+	<%= f.submit "Update hashtag" %>
+<% end %>
+
+
+	
+
+<div id="pending">
+	<h2>Pending</h2>
+	<table><%= render @pending %></table>
+		
+</div>
+
+
+<div id="approved">
+	<h2>Approved</h2>
+	<table><%= render @approved %></table>	
+</div>

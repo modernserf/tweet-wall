@@ -1,0 +1,17 @@
+<tr>
+	<td ><img src="<%= tweet.img_url %>" class="icon"></td>
+	<td>
+		<strong><%= tweet.name %></strong> @<%= tweet.user_name %><br>
+		<%= tweet.text %><br>		
+	</td>
+	<td class = "controls">
+		<% if !(tweet.approved) %>
+			<% tweet.approved = true %>
+			<%= form_for(tweet) do |f| %>
+				<%= f.hidden_field(:approved) %>
+		    <%= f.submit "Approve" %>
+			<% end %>
+		<% end %>
+		<%= link_to 'Delete', tweet, method: :delete %>		
+	</td>
+</tr>
