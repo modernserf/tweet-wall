@@ -6,6 +6,20 @@ class TweetsController < ApplicationController
     @user.loadTweets
     @pending = Tweet.where(approved: false).order("id DESC")
     @approved = Tweet.where(approved: true).order("id DESC")
+
+    if @user.delete_pending
+      @pending.each do |p|
+        p.delete
+      end
+      @user.update_attributes(delete_pending: false)
+    end
+    if @user.delete_approved
+      @approved.each do |a|
+        a.delete
+      end
+      @user.update_attributes(delete_approved: false)
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tweets }

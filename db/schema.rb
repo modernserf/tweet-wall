@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120530160459) do
+ActiveRecord::Schema.define(:version => 20120606152829) do
 
   create_table "tweets", :force => true do |t|
     t.string   "id_str"
@@ -27,9 +27,11 @@ ActiveRecord::Schema.define(:version => 20120530160459) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.boolean  "autopost"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.string   "hashtag"
+    t.boolean  "delete_pending"
+    t.boolean  "delete_approved"
   end
 
 end

@@ -1,8 +1,9 @@
 <style type="text/css" media="screen">
 
 	#container{
-		width: 800px;
-		margin-left: 100px;
+		width: 1000px;
+		margin-left: auto;
+		margin-right:auto;
 		margin-top: 50px;
 	}
 	.orange{
@@ -26,20 +27,33 @@
 	}
 	
 	#logo_subline{
-		margin-top: -10px;
-		font-size: 1.3em;
+		margin-top: 15px;
+		font-size: 2em;
+		margin-bottom: -5px;
+	}
+
+	.tweet_row {
+		padding: 20px;
+		font-size: 1.5em;
+		line-height: 1.2em;
+	}
+	
+	.icon {
+		width: 75px;
 	}
 
 	.controls {
 		display:none;
 	}
+	
+
 </style>
 <div id="container">
 	<div id="header">
 		<%= image_tag "vnuze_logo.PNG", :title => "VideoNuze", :class => "logo" %>
 		<div id="logotext">
 			<p id="logo_tagline">ONLINE VIDEO ADVERTISING SUMMIT</p>
-			<p id="logo_subline">join the conversation at <span class="orange"><%= @user.hashtag %></span></p>
+			<p id="logo_subline"><span class="orange">join the conversation at</span> <strong><%= @user.hashtag %></strong></p>
 		</div>
 	</div>
 	<div id="body">

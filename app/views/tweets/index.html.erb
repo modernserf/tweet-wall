@@ -1,13 +1,3 @@
-<script type="text/javascript" charset="utf-8">
-	$(document).ready(function() {
-        // get data every 5 mins and refresh myDiv
-        var pingAfter = 5000;  
-        var refreshId = setInterval(function() {
-            $("#pending").load('/partial/data');
-        }, pingAfter);
-    });
-</script>
-
 <%= form_for @user do |f|  %>
 	<% if @user.autopost %>
 		<% @user.autopost = false %>
@@ -31,12 +21,25 @@
 
 <div id="pending">
 	<h2>Pending</h2>
-	<table><%= render @pending %></table>
-		
+	<% if @pending.any? %>
+		<table><%= render @pending %></table>	
+		<%= form_for @user do |f|  %>
+			<% @user.delete_pending = true %>
+			<%= f.hidden_field :delete_pending %>
+			<%= f.submit "Delete all pending tweets" %>
+		<% end %>
+	<% end %>
 </div>
 
 
 <div id="approved">
 	<h2>Approved</h2>
-	<table><%= render @approved %></table>	
+	<% if @approved.any? %>
+		<table><%= render @approved %></table>
+		<%= form_for @user do |f|  %>
+			<% @user.delete_approved = true %>
+			<%= f.hidden_field :delete_approved %>
+			<%= f.submit "Delete all approved tweets" %>
+		<% end %>	
+	<% end %>
 </div>

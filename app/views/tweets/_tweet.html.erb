@@ -1,13 +1,13 @@
 <tr>
 	<td ><img src="<%= tweet.img_url %>" class="icon"></td>
-	<td>
+	<td class="tweet_row">
 		<strong><%= tweet.name %></strong> @<%= tweet.user_name %><br>
 		<%= tweet.text %><br>		
 	</td>
 	<td class = "controls">
 		<% if !(tweet.approved) %>
-			<% tweet.approved = true %>
 			<%= form_for(tweet) do |f| %>
+				<% tweet.approved = true %>				
 				<%= f.hidden_field(:approved) %>
 		    <%= f.submit "Approve" %>
 			<% end %>
